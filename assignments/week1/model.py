@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class LinearRegression:
     """
     A linear regression model that uses minimum OLS regression loss.
@@ -60,7 +61,9 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000) -> None:
+    def fit(
+        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
+    ) -> None:
         """
         Using for loop to get the gradient under given learning rate and epochs.
 
