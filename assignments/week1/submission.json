@@ -7,7 +7,6 @@
         }
     ],
     "sources": [
-        "https://github.com/ozzieliu/python-tutorials/blob/master/Linear%20Regression/Linear%20Regression%20with%20Gradient%20Descent.ipynb",
-        "http://web.cs.ucla.edu/~chohsieh/teaching/CS260_Winter2019/lecture3.pdf"
+        "https://github.com/ozzieliu/python-tutorials/blob/master/Linear%20Regression/Linear%20Regression%20with%20Gradient%20Descent.ipynb"
     ]
 }

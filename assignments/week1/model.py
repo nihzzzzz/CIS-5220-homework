@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class LinearRegression:
     """
     A linear regression model that uses minimum OLS regression loss.
@@ -17,6 +16,7 @@ class LinearRegression:
         Returns:
             None
         """
+
         self._theta = None
         self.w = None
         self.b = None
@@ -32,6 +32,7 @@ class LinearRegression:
         Returns:
             None
         """
+
         X = np.hstack([np.ones((len(X), 1)), X])
 
         self._theta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
@@ -59,9 +60,7 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def fit(
-        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
-    ) -> None:
+    def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000) -> None:
         """
         Using for loop to get the gradient under given learning rate and epochs.
 
@@ -74,6 +73,7 @@ class GradientDescentLinearRegression(LinearRegression):
         Returns:
             None
         """
+
         X = np.hstack([np.ones((len(X), 1)), X])
         theta = np.zeros(X.shape[1])
 
@@ -97,5 +97,6 @@ class GradientDescentLinearRegression(LinearRegression):
             np.ndarray: The predicted output.
 
         """
+
         X = np.hstack([np.ones((len(X), 1)), X])
         return X.dot(self._theta)
