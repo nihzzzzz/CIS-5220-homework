@@ -2,13 +2,11 @@
     "assignment_name": "Assignment 1",
     "contributors": [
         {
-            "name": "Jordan Matelsky",
-            "pennkey": "matelsky"
+            "name": "Haozhen Ni",
+            "pennkey": "nihzzzzz"
         }
     ],
     "sources": [
-        "https://example.com",
-        "Conversations with TA (include TA's name)",
-        "LLM (include information about the LLM and how it was used)"
+        "https://github.com/ozzieliu/python-tutorials/blob/master/Linear%20Regression/Linear%20Regression%20with%20Gradient%20Descent.ipynb"
     ]
 }
