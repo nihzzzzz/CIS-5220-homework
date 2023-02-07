@@ -1,5 +1,6 @@
 import torch
 from typing import Callable
+
 # MLP(784, 32, 10, 1, torch.nn.ReLU(), torch.nn.init.ones_)
 
 
@@ -29,10 +30,10 @@ class MLP(torch.nn.Module):
             initializer: The initializer to use for the weights.
         """
         super(MLP, self).__init__()
-        
+
         self.activation = activation
         self.initializer = initializer
-        
+
         self.layers = torch.nn.ModuleList()
 
         for i in range(hidden_count):
@@ -41,15 +42,7 @@ class MLP(torch.nn.Module):
             input_size = hidden_size
         self.out = torch.nn.Linear(input_size, num_classes)
 
-        
-
-        
-
-
-
-
-
-    def forward(self, x: torch.Tensor)-> torch.Tensor:
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Forward pass of the network.
 
@@ -60,8 +53,8 @@ class MLP(torch.nn.Module):
             The output of the network.
         """
         x = x.view(x.shape[0], -1)
-        
+
         for layer in self.layers:
-          x = self.activation(layer(x))
+            x = self.activation(layer(x))
 
         return self.out(x)
