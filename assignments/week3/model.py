@@ -1,8 +1,6 @@
 import torch
 from typing import Callable
 
-# MLP(784, 32, 10, 1, torch.nn.ReLU(), torch.nn.init.ones_)
-
 
 class MLP(torch.nn.Module):
     """

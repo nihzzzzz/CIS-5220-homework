@@ -1,6 +1,6 @@
 import torch
 from model import MLP
-# ReLU
+
 
 def create_model(input_dim: int, output_dim: int) -> MLP:
     """
