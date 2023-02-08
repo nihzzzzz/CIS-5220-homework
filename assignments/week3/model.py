@@ -13,7 +13,7 @@ class MLP(torch.nn.Module):
         hidden_size: int,
         num_classes: int,
         hidden_count: int = 1,
-        activation: Callable = torch.nn.CELU,
+        activation: Callable = torch.nn.SELU,
         initializer: Callable = torch.nn.init.ones_,
     ) -> None:
         """
