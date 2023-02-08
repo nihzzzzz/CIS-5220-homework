@@ -13,7 +13,7 @@ class MLP(torch.nn.Module):
         hidden_size: int,
         num_classes: int,
         hidden_count: int = 1,
-        activation: Callable = torch.nn.Softplus,
+        activation: Callable = torch.nn.ELU,
         initializer: Callable = torch.nn.init.ones_,
     ) -> None:
         """
@@ -36,7 +36,7 @@ class MLP(torch.nn.Module):
 
         for i in range(hidden_count):
             self.layers += [torch.nn.Linear(input_size, hidden_size)]
-            self.initializer(self.layers[0].weight.data)
+            self.initializer(self.layers[0].weight)
             input_size = hidden_size
         self.out = torch.nn.Linear(input_size, num_classes)
 
