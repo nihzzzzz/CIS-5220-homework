@@ -15,4 +15,4 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
         MLP: The created model.
 
     """
-    return MLP(input_dim, 32, output_dim, 1, torch.nn.Softmax(), torch.nn.init.ones_)
+    return MLP(input_dim, 32, output_dim, 1, torch.nn.Softplus(), torch.nn.init.ones_)
