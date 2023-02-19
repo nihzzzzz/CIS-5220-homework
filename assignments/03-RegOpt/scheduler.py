@@ -5,6 +5,7 @@ from torch.optim.lr_scheduler import _LRScheduler
 
 class CustomLRScheduler(_LRScheduler):
     """
+    Exponential LR
     Decays the learning rate of each parameter group by gamma every epoch.
     When last_epoch=-1, sets initial lr as lr.
 
