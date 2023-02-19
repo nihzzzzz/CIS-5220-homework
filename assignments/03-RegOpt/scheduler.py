@@ -14,7 +14,7 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, milestones, gamma=0.5, last_epoch=-1):
+    def __init__(self, optimizer, milestones=[30, 80], gamma=0.5, last_epoch=-1):
         """
         Create a new scheduler.
 
