@@ -18,8 +18,7 @@ class CONFIG:
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
-        "factor": 2.449,
-        "total_iters": 50,
+        "gamma": 1,
     }
 
     optimizer_factory: Callable[
@@ -33,5 +32,6 @@ class CONFIG:
     transforms = Compose(
         [
             ToTensor(),
+            Normalize(std=(0.4914, 0.4822, 0.4465), mean=(0.247, 0.243, 0.261))
         ]
     )
