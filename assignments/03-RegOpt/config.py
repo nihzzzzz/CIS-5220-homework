@@ -6,6 +6,9 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 
 class CONFIG:
+    """
+    Set up the basic arguments
+    """
 
     batch_size = 64
     num_epochs = 2
@@ -15,6 +18,7 @@ class CONFIG:
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
+        "gamma": 1
     }
 
     optimizer_factory: Callable[

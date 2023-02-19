@@ -7,14 +7,12 @@ from torch.optim.lr_scheduler import _LRScheduler
 
 class CustomLRScheduler(_LRScheduler):
     """
-    Decays the learning rate of each parameter group by gamma once the
-    number of epoch reaches one of the milestones. Notice that such decay can
-    happen simultaneously with other changes to the learning rate from outside
-    this scheduler. When last_epoch=-1, sets initial lr as lr.
+    Decays the learning rate of each parameter group by gamma every epoch.
+    When last_epoch=-1, sets initial lr as lr.
 
     """
 
-    def __init__(self, optimizer, milestones=[30, 80], gamma=0.5, last_epoch=-1):
+    def __init__(self, optimizer, gamma=0.1, last_epoch=-1):
         """
         Create a new scheduler.
 
@@ -23,12 +21,13 @@ class CustomLRScheduler(_LRScheduler):
 
         """
         # ... Your Code Here ...
-        count_ms = []
-        for i in milestones:
-            temp = np.ones(len(milestones)) * i
-            count = np.sum(temp == milestones)
-            count_ms.append((str(i), count))
-        self.milestones = dict(count_ms)
+        # count_ms = []
+        # for i in milestones:
+        #     temp = np.ones(len(milestones)) * i
+        #     count = np.sum(temp == milestones)
+        #     count_ms.append((str(i), count))
+        # self.milestones = dict(count_ms)
+        # self.gamma = gamma
         self.gamma = gamma
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
@@ -40,12 +39,7 @@ class CustomLRScheduler(_LRScheduler):
         """
         # ... Your Code Here ...
 
-        if self.last_epoch not in self.milestones:
-            return [group["lr"] for group in self.optimizer.param_groups]
-        return [
-            group["lr"] * self.gamma ** self.milestones[self.last_epoch]
-            for group in self.optimizer.param_groups
-        ]
+        return [base_lr * self.gamma**self.last_epoch for base_lr in self.base_lrs]
 
         # Here's our dumb baseline implementation:
         # return [i for i in self.base_lrs]
