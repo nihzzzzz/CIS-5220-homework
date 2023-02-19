@@ -7,7 +7,7 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 class CONFIG:
     """
-    Set up the basic arguments
+    Set up the basic arguments for the MultiStepLR.
     """
 
     batch_size = 64
@@ -18,8 +18,8 @@ class CONFIG:
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
-        "milestones": [30, 80],
-        "gamma": 0.5,
+        "factor": 2.449,
+        "total_iters": 50,
     }
 
     optimizer_factory: Callable[
