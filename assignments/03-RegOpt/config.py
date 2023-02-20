@@ -12,13 +12,15 @@ class CONFIG:
 
     batch_size = 64
     num_epochs = 2
-    initial_learning_rate = 0.001
-    initial_weight_decay = 0
+    initial_learning_rate = 0.003
+    initial_weight_decay = 0.001
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
-        "gamma": 1,
+        "num_epochs": num_epochs,
+        "factor": 0.003,
+        "initial_learning_rate": initial_learning_rate,
     }
 
     optimizer_factory: Callable[
@@ -32,6 +34,6 @@ class CONFIG:
     transforms = Compose(
         [
             ToTensor(),
-            Normalize(std=(0.4914, 0.4822, 0.4465), mean=(0.247, 0.243, 0.261)),
+            Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
         ]
     )
