@@ -11,15 +11,14 @@ class CONFIG:
     """
 
     batch_size = 64
-    num_epochs = 2
-    initial_learning_rate = 0.003
-    initial_weight_decay = 0.001
+    num_epochs = 5
+    initial_learning_rate = 0.002
+    initial_weight_decay = 0.002
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
         "num_epochs": num_epochs,
-        "factor": 0.003,
         "initial_learning_rate": initial_learning_rate,
     }
 
