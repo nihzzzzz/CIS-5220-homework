@@ -6,13 +6,13 @@ from torch.optim.lr_scheduler import _LRScheduler
 
 class CustomLRScheduler(_LRScheduler):
     """
-    Exponential LR
-    Decays the learning rate of each parameter group by gamma every epoch.
-    When last_epoch=-1, sets initial lr as lr.
+    CosineAnnealingLR
+    with reduce learning rate.
 
     Args:
         optimizer (Optimizer): Wrapped optimizer.
-        gamma (float): Multiplicative factor of learning rate decay.
+        num_epochs (int): The total number of epochs.
+        initial_learning_rate (float): The initial learning rate.
         last_epoch (int): The index of last epoch. Default: -1.
 
     """
@@ -27,7 +27,21 @@ class CustomLRScheduler(_LRScheduler):
         self.num_epochs = num_epochs
         self.initial_learning_rate = initial_learning_rate
         self.total_iters = self.num_epochs * 782
+        self.min_lrs = [0] * len(optimizer.param_groups)
+        self.num_bad_epochs = 0
+        self.best = None
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
+
+    def _reduce_lr(self) -> None:
+        """
+        Arguments:None
+        Returns: None
+        """
+        for i, param_group in enumerate(self.optimizer.param_groups):
+            old_lr = float(param_group["lr"])
+            new_lr = max(old_lr * 0.01, self.min_lrs[i])
+            if old_lr - new_lr > 1e-8:
+                param_group["lr"] = new_lr
 
     def get_lr(self) -> List[float]:
         """
@@ -43,12 +57,22 @@ class CustomLRScheduler(_LRScheduler):
         # Here's our dumb baseline implementation:
         if self.last_epoch == 0:
             return [
-                0.0002 + (i - 0.0001) * (1 + np.cos(np.pi)) / 2 for i in self.base_lrs
+                0.00001 + (i - 0.00001) * (1 + np.cos(np.pi)) / 2 for i in self.base_lrs
             ]
 
+        if self.last_epoch >= 5000:
+            self._reduce_lr()
+            return [
+                0.00001
+                + (i - 0.00001)
+                * 1
+                * (1 + np.cos(np.pi * self.last_epoch / self.total_iters))
+                / 2
+                for i in self.base_lrs
+            ]
         return [
-            0.0002
-            + (i - 0.0001)
+            0.00001
+            + (i - 0.00001)
             * (1 + np.cos(np.pi * self.last_epoch / self.total_iters))
             / 2
             for i in self.base_lrs
