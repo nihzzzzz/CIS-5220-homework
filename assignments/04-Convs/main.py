@@ -21,12 +21,12 @@ ACCURACY_THRESHOLD = 0.55
 
 def get_cifar10_data() -> Tuple[DataLoader, DataLoader]:
     """
-    Get the CIFAR10 data from torchvision
+    Get the CIFAR10 data from torchvision.
     Arguments:
         None
     Returns:
-        train_loader (DataLoader): The training data loader
-        test_loader (DataLoader): The test data loader
+        train_loader (DataLoader): The training data loader.
+        test_loader (DataLoader): The test data loader.
     """
     # Get the training data:
     train_data = CIFAR10(

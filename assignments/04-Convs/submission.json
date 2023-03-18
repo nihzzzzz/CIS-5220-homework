@@ -2,12 +2,12 @@
     "assignment_name": "Convolutions",
     "contributors": [
         {
-            "name": "Haozhen Ni",
-            "pennkey": "nihzzzzz"
-        },
-        {
             "name": "Guo Cheng",
             "pennkey": "guocheng"
+        },
+        {
+            "name": "Haozhen Ni",
+            "pennkey": "nihzzzzz"
         }
     ],
     "sources": [
