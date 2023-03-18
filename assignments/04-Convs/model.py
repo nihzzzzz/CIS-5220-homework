@@ -24,9 +24,10 @@ class Model(torch.nn.Module):
         self.batch1 = torch.nn.BatchNorm2d(16)
         self.conv2 = torch.nn.Conv2d(16, 16, kernel_size=3, stride=2, padding=1)
 
-        self.fc1 = torch.nn.Linear(16 * 8 * 8, 128)
-        self.fc2 = torch.nn.Linear(128, num_classes)
-        self.relu = torch.nn.ReLU()
+        self.fc1 = torch.nn.Linear(16 * 8 * 8, 64)
+        self.fc2 = torch.nn.Linear(64, num_classes)
+        # self.relu = torch.nn.ReLU()
+        self.activation = torch.nn.SiLU()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -38,13 +39,16 @@ class Model(torch.nn.Module):
 
         x = self.conv1(x)
         x = self.batch1(x)
-        x = self.relu(x)
+        x = self.activation(x)
+        # x = self.relu(x)
         x = self.conv2(x)
-        x = self.relu(x)
+        x = self.activation(x)
+        # x = self.relu(x)
 
         x = x.view(-1, 16 * 8 * 8)
         x = self.fc1(x)
-        x = self.relu(x)
+        x = self.activation(x)
+        # x = self.relu(x)
         x = self.fc2(x)
 
         return x
